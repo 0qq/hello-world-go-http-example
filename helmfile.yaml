@@ -1,0 +1,20 @@
+repositories:
+- name: prometheus-community 
+  url: https://prometheus-community.github.io/helm-charts
+
+releases:
+- name: kube-prometheus-stack
+  namespace: monitoring
+  chart: prometheus-community/kube-prometheus-stack
+  createNamespace: true   
+  missingFileHandler: Warn
+  values:
+  - values/kube-prometheus-stack.yaml
+
+- name: hello-world
+  namespace: prod
+  chart: ./charts/hello-world
+  createNamespace: true   
+  missingFileHandler: Warn
+  values:
+  - values/hello-world.yaml

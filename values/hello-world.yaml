@@ -1,0 +1,25 @@
+replicaCount: 2
+
+image:
+  tag: latest
+
+livenessProbe:
+  httpGet:
+    path: /liveness
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /readiness
+    port: http
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+serviceMonitor:
+  enabled: true

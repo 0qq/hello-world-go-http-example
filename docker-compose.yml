@@ -1,0 +1,30 @@
+---
+version: '3.8'
+volumes:
+  prometheus-data:
+  grafana_data:
+
+services:
+  hello-world:
+    build: .
+    image: hello-world
+    ports:
+      - 8000:8000
+
+  prometheus:
+    image: bitnami/prometheus:2.33.5
+    ports:
+      - 9090:9090
+    volumes:
+      - prometheus-data:/opt/bitnami/prometheus/data
+      - ./prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+
+  grafana:
+    image: bitnami/grafana:8.4.4
+    ports:
+      - 3000:3000
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - ./grafana/datasource.yml:/opt/bitnami/grafana/conf/provisioning/datasources/datasource.yml
+      - grafana_data:/opt/bitnami/grafana/data

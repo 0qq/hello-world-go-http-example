@@ -1,0 +1,58 @@
+alertmanager:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 10Gi
+
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
+prometheus:
+  resources:
+    limits:
+      cpu: 600m
+      memory: 400Mi
+    requests:
+      cpu: 200m
+      memory: 200Mi
+  prometheusSpec:
+    serviceMonitorNamespaceSelector:
+      matchExpressions:
+        - key: name
+          operator: In
+          values:
+            - monitoring
+            - prod
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 10Gi
+grafana:
+  resources:
+    limits:
+      cpu: 300m
+      memory: 300Mi
+    requests:
+      cpu: 150m
+      memory: 150Mi
+  persistence:
+    enabled: true 
+    size: 10Gi
