@@ -69,4 +69,4 @@ kubectl --namespace prod port-forward svc/hello-world 8000
 ```
 
 Load Grafana dashboard with export AUTH=admin:prom-operator
-and emulate requests to svc via curl.
+and emulate requests to svc via curl, both commands above.
