@@ -51,7 +51,7 @@ minikube image load hello-world:latest
 
 deploy with helmfile
 ```bash
-helmfile apply
+helmfile sync
 ```
 
 **OR** deploy with helm
